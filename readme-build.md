@@ -25,3 +25,4 @@ STEP 4 install bootstrap and add the file paths to the styles and scripts array 
 
     npm install angular-ui-bootstrap
 
+CHECKIIIIIING
