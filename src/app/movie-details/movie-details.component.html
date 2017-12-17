@@ -1,0 +1,19 @@
+<div class="panel panel-default" *ngIf="movie">
+    <div class="panel-body">
+
+        <div class="col-md-4">
+            <img class="img-responsive" src="{{imgUrl}}{{movie.poster_path}}" />
+        </div>
+        <div class="col-md-8">
+            {{movie.overview}}
+            <h3><strong>Rating: </strong>{{movie.vote_average}}</h3>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-default" *ngIf="!movie">
+    <div class="panel-heading">
+        <h3>Select a movie for more information</h3>
+    </div>
+</div>
