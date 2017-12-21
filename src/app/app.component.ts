@@ -1,5 +1,5 @@
 import {
-  Component
+  Component,Output
 } from '@angular/core';
 import {
   Http,
@@ -15,4 +15,11 @@ import 'rxjs/add/operator/map';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { }
+
+export class AppComponent { 
+    
+    query: string = '';
+    onMovieSearch(query:HTMLInputElement){
+        this.query = query.value;
+    }
+}

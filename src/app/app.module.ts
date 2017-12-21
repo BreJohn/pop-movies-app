@@ -7,6 +7,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesService } from './movies.service';
 import 'rxjs/add/operator/map';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
     MovieDetailsComponent
   ],
   imports: [
-    BrowserModule,HttpModule,AppRoutingModule
+    BrowserModule,HttpModule,AppRoutingModule, FormsModule
   ],
   providers: [MoviesService],
   bootstrap: [AppComponent]

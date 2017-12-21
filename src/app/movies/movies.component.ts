@@ -1,7 +1,7 @@
 import {
   Component,
   OnInit,
-  EventEmitter
+  EventEmitter, Input
 } from '@angular/core';
 import {
   MoviesService
@@ -18,6 +18,7 @@ import {
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
+  @Input() query:string;
   pageCount: number;
   movies: any = {};
   imgUrl = 'https://image.tmdb.org/t/p/w300';

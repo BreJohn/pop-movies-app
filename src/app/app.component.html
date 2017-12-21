@@ -2,17 +2,18 @@
     <div class="container">
         <div class="navbar-header">
             <a style="cursor: pointer;" class="navbar-brand">Movie Viewer</a>
-            <form class="navbar-form navbar-right" action="/action_page.php">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
+        </div>
+        <div class="navbar-form navbar-right">
+            <div class="input-group ">
+                <input #query type="text" class="form-control" placeholder="Search">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" (click)="onMovieSearch(query)">
         <i class="glyphicon glyphicon-search"></i>
       </button>
-                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </nav>
-<router-outlet></router-outlet>
+
+<router-outlet [query] = "query"></router-outlet>
