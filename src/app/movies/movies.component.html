@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <button *ngIf="pageCount>1" type="button" class="btn btn-default btn-md pull-left" (click)="onPrevPage()">
+          <span class="glyphicon glyphicon-menu-left"></span> Previous
+      </button>
+        <button type="button" class="btn btn-default btn-md pull-right" (click)="onNextPage()">
+          <span class="glyphicon glyphicon-menu-right"></span> Next
+     </button>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-sm-3">
+            <ul class="list-group">
+                <a *ngFor="let movie of movies.results; let i= index" class="list-group-item clearfix" style="cursor: pointer;" routerLink="{{i}}" [routerLinkActive]="'active'">
+           {{movie.title}}
+           </a>
+                <!--<li class="list-group-item"><img src="{{imgUrl}}{{movie.poster_path}}" /></li>-->
+            </ul>
+        </div>
+        <div class="col-md-8 col-sm-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
