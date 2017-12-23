@@ -18,7 +18,7 @@ import {
   styleUrls: ['./movies.component.css']
 })
 export class MoviesComponent implements OnInit {
-  @Input() query:string;
+
   pageCount: number;
   movies: any = {};
   imgUrl = 'https://image.tmdb.org/t/p/w300';
@@ -26,19 +26,37 @@ export class MoviesComponent implements OnInit {
   constructor(private movService: MoviesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
+
     this.route.params
       .subscribe(
       (params: Params) => {
-        this.pageCount = +params['page'];
-        this.movService.getMovies(+params['page'])
-          .subscribe(
-          (movies: any[]) => {
-            this.movies = movies;
-          }
-          );
+       
+        if (!params['query']) {
+          this.pageCount = +params['page'];
+          this.movService.getMovies(+params['page'])
+            .subscribe(
+            (movies: any[]) => {
+              this.movies = movies;
+                
+            }
+            );
+        }
+        else if (params['query']){
+          
+          this.movService.getQuery(+params['page'], params['query'])
+            .subscribe(
+            (movies: any[]) => {
+              this.movies = movies;
+               
+            }
+            );
+            
+        }
       }
       );
   }
+
 
   onNextPage() {
     const nextPage = +this.route.snapshot.params['page'] + 1;
@@ -49,5 +67,6 @@ export class MoviesComponent implements OnInit {
     const prevPage = +this.route.snapshot.params['page'] - 1;
     this.router.navigate(['movies/', prevPage]);
   }
+
 
 }

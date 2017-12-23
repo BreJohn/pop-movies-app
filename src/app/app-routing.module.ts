@@ -5,16 +5,29 @@ import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MoviesService } from './movies.service';
-import { Routes,RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-const appRoutes : Routes = [
-    {path:'',redirectTo: '/movies/1', pathMatch: 'full'},
-    {path:'movies/:page',component: MoviesComponent, children:
-     [  
-      {path:':id',component: MovieDetailsComponent}
-    ]},
-    {path:'movies',redirectTo: '/movies/1'},
-    
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/movies/1', pathMatch: 'full' },
+  {
+    path: 'movies/:page/search/:query', component: MoviesComponent, children:
+      [
+
+        { path: ':id', component: MovieDetailsComponent }
+
+      ]
+  },
+  {
+    path: 'movies/:page', component: MoviesComponent, children:
+      [
+
+        { path: ':id', component: MovieDetailsComponent }
+
+      ]
+  },
+
+  { path: 'movies', redirectTo: '/movies/1' },
+
 ]
 
 @NgModule({
@@ -22,7 +35,7 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   exports: [
-      RouterModule
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

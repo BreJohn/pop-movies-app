@@ -20,13 +20,25 @@ export class MovieDetailsComponent implements OnInit {
     this.route.params
       .subscribe(
       (params: Params) => {
-        this.id = +params['id'];
-        this.movService.getMovies(this.page).subscribe(
-          (res) => {
-            this.movie = res.results[this.id];
-          }
-        );
+           console.log(params['query']); 
+        if (!params['query']) {
+          this.id = +params['id'];
+          this.movService.getMovies(this.page).subscribe(
+            (movies) => {
+              this.movie = movies.results[this.id];
+            }
+          );
+        }
+        else if (params['query']) {
+               
+          this.movService.getQuery(+params['page'], params['query'])
+            .subscribe(
+            (movies) => {
+              this.movie = movies.results[this.id];
+            }
+            );
 
+        }
       }
       );
 
