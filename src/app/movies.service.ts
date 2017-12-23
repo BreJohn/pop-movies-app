@@ -17,7 +17,7 @@ export class MoviesService {
   constructor(private http: Http) { }
   
   page: number;
-
+  query: string;
 
   getMovies(page: number): Observable<any> {
 

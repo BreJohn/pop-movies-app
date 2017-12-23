@@ -11,27 +11,31 @@ export class MovieDetailsComponent implements OnInit {
   movie: String;
   id: number;
   page: number;
+  query: string;
   imgUrl = 'https://image.tmdb.org/t/p/w300';
   constructor(private movService: MoviesService, private route: ActivatedRoute) {
   }
   ngOnInit() {
     this.movie = null;
     this.page = this.movService.page;
+    this.query = this.movService.query;
+      
     this.route.params
       .subscribe(
       (params: Params) => {
-           console.log(params['query']); 
-        if (!params['query']) {
-          this.id = +params['id'];
+         console.log(this.query);
+        if (this.query == null) {
+          this.id = +params['id'];    
           this.movService.getMovies(this.page).subscribe(
             (movies) => {
               this.movie = movies.results[this.id];
             }
           );
         }
-        else if (params['query']) {
-               
-          this.movService.getQuery(+params['page'], params['query'])
+        else if (this.query) {
+            
+          this.id = +params['id'];    
+          this.movService.getQuery(this.page, this.query)
             .subscribe(
             (movies) => {
               this.movie = movies.results[this.id];

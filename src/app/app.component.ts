@@ -25,7 +25,8 @@ export class AppComponent {
   constructor(private movService: MoviesService, private route: ActivatedRoute, private router: Router) { }
 
   onMovieSearch(query: HTMLInputElement) {
-    
+    this.movService.query = query.value;
     this.router.navigate(['/movies',1,'search', query.value]);
+      
   }
 }
